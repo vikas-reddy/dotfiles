@@ -1,0 +1,6 @@
+after paring
+sdptool browse; & hcitool scan; for channel no. and mac address
+****************************
+update channel no. and address
+/etc/bluetooth/rfcomm.conf 
+****************************

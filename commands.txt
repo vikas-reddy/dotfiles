@@ -1,0 +1,46 @@
+Bluetooth
+=========
+
+*) Obex FS mount Nokia 5230
+    obexfs -b EC:9B:5B:54:D3:ED --channel 8 -- nokia/
+
+*) Dial-up Internet
+    sudo wvdial Nokia
+
+Others
+======
+
+*) sudo mount /dev/sdb1 -o uid=`id -u`,fmask=0133,dmask=0022 nokia/
+
+*) Sync clock using NTP
+    sudo ntpd -qg
+    sudo hwclock --systohc
+
+*) SMB Mount
+    sudo mount -t cifs -o username=vikas,password=vikky123 //10.0.0.250/media public_html
+
+*) Disable system beep
+    xset b off
+    xset b 0 0 0
+
+*) Rsync
+    rsync -av --stats --delete --progress /media/IAUDIO/ IAUDIO/
+
+*) Get the MAC addr
+    ifconfig | grep Ethernet | sed -sr 's|^\s*ether ([^ ]+) .*$|\1|'
+
+*) Extract audio from a video
+    ffmpeg -i video.mp4 -vn -ac 2 -ar 44100 -ab 128k -f mp3 output-file.mp3
+    ffmpeg -i video.mp4 -acodec copy audio.aac
+    ffmpeg -ss 01:32:40 -t 00:03:43 -i video.avi -acodec copy audio.aac
+
+*) Check number of colors supported by terminal
+    tput colors
+
+GIT
+===
+
+*) Amend author of latest commit
+    git commit --amend --author="Author Name <email@address.com>"
+
+German philosopher Frederick Niche

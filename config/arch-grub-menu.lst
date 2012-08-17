@@ -1,0 +1,70 @@
+# Config file for GRUB - The GNU GRand Unified Bootloader
+# /boot/grub/menu.lst
+
+# DEVICE NAME CONVERSIONS 
+#
+#  Linux           Grub
+# -------------------------
+#  /dev/fd0        (fd0)
+#  /dev/sda        (hd0)
+#  /dev/sdb2       (hd1,1)
+#  /dev/sda3       (hd0,2)
+#
+
+#  FRAMEBUFFER RESOLUTION SETTINGS
+#     +-------------------------------------------------+
+#          | 640x480    800x600    1024x768   1280x1024
+#      ----+--------------------------------------------
+#      256 | 0x301=769  0x303=771  0x305=773   0x307=775
+#      32K | 0x310=784  0x313=787  0x316=790   0x319=793
+#      64K | 0x311=785  0x314=788  0x317=791   0x31A=794
+#      16M | 0x312=786  0x315=789  0x318=792   0x31B=795
+#     +-------------------------------------------------+
+#  for more details and different resolutions see
+#  https://wiki.archlinux.org/index.php/GRUB#Framebuffer_resolution
+
+# general configuration:
+timeout   5
+default   6
+color light-blue/black light-cyan/blue
+
+# boot sections follow
+# each is implicitly numbered from 0 in the order of appearance below
+#
+# TIP: If you want a 1024x768 framebuffer, add "vga=773" to your kernel line.
+#
+#-*
+
+title  Arch Linux
+root   (hd0,1)
+kernel /boot/vmlinuz26 root=UUID=a3849bc6-fb7b-45c5-86cf-659bd1bf3f61 ro
+initrd /boot/kernel26.img
+
+title  Arch Linux LTS
+root   (hd0,1)
+kernel /boot/vmlinuz26-lts root=UUID=a3849bc6-fb7b-45c5-86cf-659bd1bf3f61 ro
+initrd /boot/kernel26-lts.img
+
+title  LMDE 3.0.0-1-amd64
+root   (hd0,5)
+kernel /boot/vmlinuz-3.0.0-1-amd64 root=UUID=4d3c283d-c69a-4c47-ba07-6e4d6163c432 ro
+initrd /boot/initrd.img-3.0.0-1-amd64
+
+title  LMDE 2.6.39-2-amd64
+root   (hd0,5)
+kernel /boot/vmlinuz-2.6.39-2-amd64 root=UUID=4d3c283d-c69a-4c47-ba07-6e4d6163c432 ro
+initrd /boot/initrd.img-2.6.39-2-amd64
+
+title Fedora 16 -- 3.3.0-8.fc16.x86_64
+root   (hd0,6)
+kernel /boot/vmlinuz-3.3.0-8.fc16.x86_64 root=UUID=7bf861a5-d5a2-4dd7-97d4-79d5804026a9 ro
+initrd /boot/initramfs-3.3.0-8.fc16.x86_64.img
+
+title Fedora 16 -- 3.3.0-4.fc16.x86_64
+root   (hd0,6)
+kernel /boot/vmlinuz-3.3.0-4.fc16.x86_64 root=UUID=7bf861a5-d5a2-4dd7-97d4-79d5804026a9 ro
+initrd /boot/initramfs-3.3.0-4.fc16.x86_64.img
+
+title Windows 7 x64
+rootnoverify (hd0,0)
+chainloader +1

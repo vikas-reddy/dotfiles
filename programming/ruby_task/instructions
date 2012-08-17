@@ -1,0 +1,4 @@
+* cd the root directory of this project
+* setup db: open your mysql console, then issue the command 'source ./vulcan_mysql.sql'
+* 'sudo gem i sequel' if haven't installed sequel gem
+* 'spec tracking_spec.rb' to run specs

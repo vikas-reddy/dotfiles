@@ -1,0 +1,5 @@
+10.0.0.1     vikas    forelsewhileif
+web.iiit.ac.in     svreddy    passwd
+10.0.0.43    vikas    vikas
+10.0.0.65    girish   girish
+alsdkfj a

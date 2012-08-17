@@ -1,0 +1,237 @@
+Inquiring ...
+Browsing EC:9B:5B:54:D3:ED ...
+Service Name: AVRCP Target
+Service Description: Audio Video Remote Control
+Service Provider: Symbian Software Ltd.
+Service RecHandle: 0x10000
+Service Class ID List:
+  "AV Remote Target" (0x110c)
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+    PSM: 23
+  "AVCTP" (0x0017)
+    uint16: 0x102
+Profile Descriptor List:
+  "AV Remote" (0x110e)
+    Version: 0x0103
+
+Service Name: PnP Information
+Service RecHandle: 0x10057
+Service Class ID List:
+  "PnP Information" (0x1200)
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+
+Service Name: SIM Access
+Service RecHandle: 0x10058
+Service Class ID List:
+  "SIM Access" (0x112d)
+  "Generic Telephony" (0x1204)
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 21
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "SIM Access" (0x112d)
+    Version: 0x0101
+
+Service Name: Phonebook access PSE
+Service Provider: Symbian Software Ltd
+Service RecHandle: 0x10059
+Service Class ID List:
+  "Phonebook Access - PSE" (0x112f)
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 1
+  "OBEX" (0x0008)
+Language Base Attr List:
+  code_ISO639: 0x656e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "Phonebook Access" (0x1130)
+    Version: 0x0100
+
+Service Name: Hands-Free Audio Gateway
+Service RecHandle: 0x1005a
+Service Class ID List:
+  "Handsfree Audio Gateway" (0x111f)
+  "Generic Audio" (0x1203)
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 2
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "Handsfree" (0x111e)
+    Version: 0x0105
+
+Service Name: Headset Audio Gateway
+Service RecHandle: 0x1005b
+Service Class ID List:
+  "Headset Audio Gateway" (0x1112)
+  "Generic Audio" (0x1203)
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 3
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "Headset" (0x1108)
+    Version: 0x0100
+
+Service Name: Audio Source
+Service RecHandle: 0x1005c
+Service Class ID List:
+  "Audio Source" (0x110a)
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+    PSM: 25
+  "AVDTP" (0x0019)
+    uint16: 0x100
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "Advanced Audio" (0x110d)
+    Version: 0x0100
+
+Service Name: AVRCP Controller
+Service Description: Audio Video Remote Control
+Service Provider: Symbian Software Ltd.
+Service RecHandle: 0x1005d
+Service Class ID List:
+  "AV Remote" (0x110e)
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+    PSM: 23
+  "AVCTP" (0x0017)
+    uint16: 0x102
+Profile Descriptor List:
+  "AV Remote" (0x110e)
+    Version: 0x0103
+
+Service RecHandle: 0x1005e
+Service Class ID List:
+  UUID 128: 00005557-0000-1000-8000-0002ee000001
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 4
+
+Service Name: OBEX Object Push
+Service RecHandle: 0x10060
+Service Class ID List:
+  "OBEX Object Push" (0x1105)
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 5
+  "OBEX" (0x0008)
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "OBEX Object Push" (0x1105)
+    Version: 0x0100
+
+Service Name: Imaging
+Service RecHandle: 0x10061
+Service Class ID List:
+  "Imaging Responder" (0x111b)
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 6
+  "OBEX" (0x0008)
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "Imaging" (0x111a)
+    Version: 0x0100
+
+Service Name: SyncMLClient
+Service RecHandle: 0x10062
+Service Class ID List:
+  UUID 128: 00000002-0000-1000-8000-0002ee000002
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 7
+  "OBEX" (0x0008)
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "" (0x00000002-0000-1000-8000-0002ee000002)
+    Version: 0x0100
+
+Service Name: OBEX File Transfer
+Service RecHandle: 0x10063
+Service Class ID List:
+  "OBEX File Transfer" (0x1106)
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 8
+  "OBEX" (0x0008)
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "OBEX File Transfer" (0x1106)
+    Version: 0x0100
+
+Service Name: Nokia OBEX PC Suite Services
+Service RecHandle: 0x10064
+Service Class ID List:
+  UUID 128: 00005005-0000-1000-8000-0002ee000001
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 9
+  "OBEX" (0x0008)
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "" (0x00005005-0000-1000-8000-0002ee000001)
+    Version: 0x0100
+
+Service Name: Nokia SyncML Server
+Service RecHandle: 0x10066
+Service Class ID List:
+  UUID 128: 00005601-0000-1000-8000-0002ee000001
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+  "RFCOMM" (0x0003)
+    Channel: 10
+  "OBEX" (0x0008)
+Language Base Attr List:
+  code_ISO639: 0x454e
+  encoding:    0x6a
+  base_offset: 0x100
+Profile Descriptor List:
+  "" (0x00005601-0000-1000-8000-0002ee000001)
+    Version: 0x0100
+
