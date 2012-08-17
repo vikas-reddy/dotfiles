@@ -39,7 +39,7 @@ fi;
 for url in "$@"; do
     [ -z "$filename" ] && \
         filename="$(echo "$(echo "$url" | sed -r 's|^.*/([^/]+)$|\1|')" | echo -e "$(sed 's/%/\\x/g')")"
-    filepath="$output_dir/$filename"
+    filepath="${output_dir%/}/$filename"
 
     # Avoid overwriting the file
     if [[ -f "$filepath" ]]; then
