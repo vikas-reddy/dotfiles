@@ -1,4 +1,4 @@
-personal-files-and-configs
-==========================
+dotfiles
+========
 
-Personal files and configurations
+dotfiles
