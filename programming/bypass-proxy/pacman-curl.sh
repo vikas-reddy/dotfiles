@@ -5,6 +5,11 @@
 #
 #
 
+# Erase the current line in stdout
+erase_line() {
+    echo -ne '\r\033[K'
+}
+
 # Asynchronously (as a different process) display the filesize continously
 # (once per second).
 # * Contains an infinite loop; runs as long as this script is active
@@ -12,20 +17,19 @@
 async_display_size() {
     PARENT_PID=$BASHPID
     {
-        while true; do
-            echo -n "$(du -sh "$1")"
-            echo -ne '\r'
+        # Run until this script ends
+        until [[ -z "$(ps x | grep -E "^\s+$PARENT_PID")" ]]; do
+            # Redraw the `du` line every second
+            erase_line
+            echo -n "$(du -sh "$1") "
             sleep 1
-
-            # break if the current script is not running
-            [[ -z "$(ps x | grep -E "^\s+$PARENT_PID")" ]] && break
         done
     }&
     updater_pid="$!"
 }
 
 # Defaults
-fsize_limit=$((14*1024*1024))
+fsize_limit=$((14*1024*1024)) # 14MB
 user_agent="Firefox/10.0"
 output_dir="."
 
@@ -46,6 +50,7 @@ shift $((OPTIND - 1))
 # Only one argument, please!
 url="$1"
 
+# Guessing the output filename
 [ -z "$filename" ] && \
     filename="$(echo "$(echo "$url" | sed -r 's|^.*/([^/]+)$|\1|')" | echo -e "$(sed 's/%/\\x/g')")"
 filepath="${output_dir%/}/$filename"
@@ -54,7 +59,7 @@ filepath="${output_dir%/}/$filename"
 truncate --size 0 "$filepath"
 
 # Asynchronously (as a different process) start displaying the filesize
-# even before the download gets started!
+# even before the download is started!
 async_display_size "$filepath"
 
 i=1
@@ -67,18 +72,23 @@ while true; do   # infinite loop, until the file is fully downloaded
     # downloading
     curl --fail \
          --location \
-         --progress-bar \
          --user-agent "$user_agent" \
          --range "$start"-"$stop" \
-         "$url" >> "$filepath" 2> /dev/null;
+         "$url" >> "$filepath" 2> /dev/null; # No progress bars and error msgs, please!
 
     exit_status="$?"
 
-    # download finished
-    [ $exit_status -eq 22 ] && echo -e "$(du -sh "$filepath")... done!" && break
-
-    # other exceptions
-    [ $exit_status -gt 0 ] && echo -e "Unknown exit status: $exit_status. Aborting...\n" && break
+    if [[ $exit_status -eq 22 ]] || [[ $exit_status -eq 36 ]]; then
+        # Download finished
+        erase_line
+        echo "$(du -sh "$filepath")... done!"
+        break
+    elif [[ $exit_status -gt 0 ]]; then
+        # Unknown exit status! Something has gone wrong
+        erase_line
+        echo "Unknown exit status: $exit_status. Aborting..."
+        break
+    fi
 
     i=$(($i + 1))
 
