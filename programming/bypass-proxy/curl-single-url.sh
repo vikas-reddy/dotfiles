@@ -29,26 +29,46 @@ async_display_size() {
 }
 
 # Defaults
-fsize_limit=$((14*1024*1024)) # 14MB
-user_agent="Firefox/20.0"
+fsize_limit=$((1*1024*1024)) # 14MB
+user_agent="Firefox/10.0"
+output_dir="."
+ask_confirmtion=true
 
 
 # Command-line options
 while getopts 'f:d:u:y' opt "$@"; do
     case "$opt" in
-        f) filepath="$OPTARG"    ;;
+        f) filename="$OPTARG"    ;;
+        d) output_dir="$OPTARG"  ;;
         u) user_agent="$OPTARG"  ;;
+        y) ask_confirmtion=false ;;
     esac
 done
 shift $((OPTIND - 1))
 
-# Exit if no URL or filepath argument is provided
-if [[ $# -eq 0 ]] || [[ -z "$filepath" ]]; then
+# Exit if no URL or filename argument is provided
+if [[ $# -eq 0 ]] || [[ -z "$filename" ]]; then
     exit
 fi
 
 # Only one argument, please!
 url="$1"
+
+# Output directory checking
+if ! [[ -d "$output_dir" ]]; then
+    echo "Output directory "$output_dir" doesn't exist."
+    echo "Give a valid one! Aborting..."
+    exit
+fi
+
+# Setting the full filepath
+filepath="${output_dir%/}/$filename"
+
+# Avoid overwriting the file
+if [[ -e "$filepath" ]]; then
+    echo -n "'$filepath' already exists. Do you want to overwrite it? [y/n] "; read response
+    [ -z "$(echo "$response" | grep -i "^y")" ] && exit
+fi
 
 # Create/truncate the output file
 truncate --size 0 "$filepath"
