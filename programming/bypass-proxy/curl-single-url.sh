@@ -1,8 +1,12 @@
 #!/bin/bash
 #
 # Vikas Reddy @
-# http://vikas-reddy.blogspot.in/2012/04/bypass-proxy-servers-file-size-download.html
+# https://github.com/vikas-reddy/dotfiles/blob/master/programming/bypass-proxy/curl-single-url.sh
 #
+#
+# USAGE:
+#   ./curl-single-url.sh -f 'download-filename.avi' 'http://full-path-to-resource'
+#   Add a "-c" to resume
 #
 
 # Erase the current line in stdout
@@ -10,10 +14,9 @@ erase_line() {
     echo -ne '\r\033[K'
 }
 
-# Asynchronously (as a different process) display the filesize continously
-# (once per second).
-# * Contains an infinite loop; runs as long as this script is active
-# * Takes one argument, the total filepath
+# Asynchronously (as a different process) display the filesize, once per second.
+#   *  Contains an infinite loop; runs as long as this script is active
+#   *  Takes one argument, the complete filepath
 async_display_size() {
     PARENT_PID=$BASHPID
     {
@@ -29,8 +32,8 @@ async_display_size() {
 }
 
 # Defaults
-fsize_limit=$((1*1024*1024)) # 14MB
-user_agent="Firefox/10.0"
+fsize_limit=$((14*1024*1024)) # 14MB
+user_agent="Firefox/20.0"
 output_dir="."
 ask_confirmtion=true
 resume=false
@@ -104,7 +107,7 @@ for (( ; 1; i++ )); do
 
     # setting the range
     if [[ -n $start_from ]]; then
-        start=$(( $start_from - 1 )) # (-1) ?? Don't why!!
+        start=$(( $start_from - 1 )) # (-1) ?? Don't know why!!
         unset start_from
     else
         [ $i -eq 1 ] && start=0 || start=$(( $fsize_limit * ($i - 1) + 1))
@@ -116,7 +119,8 @@ for (( ; 1; i++ )); do
          --location \
          --user-agent "$user_agent" \
          --range "$start"-"$stop" \
-         "$url" >> "$filepath" 2> /dev/null; # No progress bars and error msgs, please!
+         "$url" >> "$filepath" \
+         2> /dev/null; # No progress bars and error msgs, please!
 
     # catching the exit status
     exit_status="$?"
