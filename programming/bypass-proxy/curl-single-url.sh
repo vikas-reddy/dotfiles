@@ -33,15 +33,17 @@ fsize_limit=$((1*1024*1024)) # 14MB
 user_agent="Firefox/10.0"
 output_dir="."
 ask_confirmtion=true
+resume=false
 
 
 # Command-line options
-while getopts 'f:d:u:y' opt "$@"; do
+while getopts 'f:d:u:yc' opt "$@"; do
     case "$opt" in
         f) filename="$OPTARG"    ;;
         d) output_dir="$OPTARG"  ;;
         u) user_agent="$OPTARG"  ;;
         y) ask_confirmtion=false ;;
+        c) resume=true           ;;
     esac
 done
 shift $((OPTIND - 1))
@@ -66,23 +68,47 @@ filepath="${output_dir%/}/$filename"
 
 # Avoid overwriting the file
 if [[ -e "$filepath" ]]; then
-    echo -n "'$filepath' already exists. Do you want to overwrite it? [y/n] "; read response
-    [ -z "$(echo "$response" | grep -i "^y")" ] && exit
-fi
+    echo -n "'$filepath' already exists. [Overwrite/Resume/Abort] [o/r/A]? "; read response
 
-# Create/truncate the output file
-truncate --size 0 "$filepath"
+    if [[ -n "$( echo "$response" | egrep -i "^o" )" ]]; then
+
+        # Truncate the output file
+        truncate --size 0 "$filepath"
+
+    elif [[ -z "$( echo "$response" | egrep -i "^r" )" ]]; then
+
+        # Abort the process
+        echo "Abort"
+        exit
+    fi
+else
+    # Create the output file
+    truncate --size 0 "$filepath"
+fi
 
 
 # Asynchronously (as a different process) start displaying the filesize
 # even before the download is started!
 async_display_size "$filepath"
 
+# Where to start from: Resume or Start?
+if $resume; then
+  start_from=$(( $(du -b "$filepath" | sed -r 's/^\s*([0-9]+).*$/\1/') + 1 ))
+  i=$(( $start_from / $fsize_limit + 1))
+else
+  i=1
+fi
+
 # infinite loop, until the file is fully downloaded
-for (( i=1; 1; i++ )); do
+for (( ; 1; i++ )); do
 
     # setting the range
-    [ $i -eq 1 ] && start=0 || start=$(( $fsize_limit * ($i - 1) + 1))
+    if [[ -n $start_from ]]; then
+        start=$(( $start_from - 1 )) # (-1) ?? Don't why!!
+        unset start_from
+    else
+        [ $i -eq 1 ] && start=0 || start=$(( $fsize_limit * ($i - 1) + 1))
+    fi
     stop=$(( $fsize_limit * i ))
 
     # downloading
