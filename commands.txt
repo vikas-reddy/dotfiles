@@ -25,6 +25,7 @@ Others
 
 *) Rsync
     rsync -av --stats --delete --progress /media/IAUDIO/ IAUDIO/
+    rsync -av --stats --delete --progress --no-perms /Volumes/IAUDIO ~/Music/ # On OSX Lion
 
 *) Get the MAC addr
     ifconfig | grep Ethernet | sed -sr 's|^\s*ether ([^ ]+) .*$|\1|'
