@@ -33,6 +33,8 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
+    pl = pull origin master
+    pu = push origin master
 
 # Show files ignored by git:
 #     ign = ls-files -o -i --exclude-standard
