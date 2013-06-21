@@ -9,6 +9,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto'
+alias vi='vim --noplugin'
 
 # Custom commands
 alias off='sleep 1 && xset dpms force off'

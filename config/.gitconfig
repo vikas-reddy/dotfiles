@@ -39,11 +39,8 @@
   pl = pull origin master
   pu = push origin master
 
-# Show files ignored by git:
-#     ign = ls-files -o -i --exclude-standard
-#
 [user]
-	name = Vikas Reddy
-	email = vreddy@castlighthealth.com
+  name = Vikas Reddy
+  email = vikasreddy.com@gmail.com
 [github]
 	user = vikas-reddy
