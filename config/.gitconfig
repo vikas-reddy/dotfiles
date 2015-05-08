@@ -35,6 +35,7 @@
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   lolb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  tu = log --author=vreddy -p --name-only --since='1 week ago'
   ls = ls-files
   pl = pull origin master
   pu = push origin master
