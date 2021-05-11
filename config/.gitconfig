@@ -42,6 +42,8 @@
 
 [user]
   name = Vikas Reddy
-  email = vikasreddy.com@gmail.com
+	email = vreddy@castlighthealth.com
 [github]
 	user = vikas-reddy
+[pull]
+	ff = only
